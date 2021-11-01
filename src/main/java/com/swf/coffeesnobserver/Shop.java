@@ -3,10 +3,8 @@ package com.swf.coffeesnobserver;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,6 +14,9 @@ public class Shop {
     private String name;
     private String address;
     private String website;
+
+    @OneToMany(mappedBy = "shop")
+    private List<Review> reviews;
 
     public void patch(Shop updatedShop) {
         if (updatedShop.getName() != null) {

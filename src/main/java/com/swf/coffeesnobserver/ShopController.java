@@ -5,9 +5,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/shop")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ShopController {
-    @Autowired
-    ShopRepository repository;
+    private final ShopRepository repository;
+
+    public ShopController(ShopRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("")
     public Iterable<Shop> getAllShops() {
